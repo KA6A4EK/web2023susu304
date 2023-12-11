@@ -43,5 +43,27 @@ describe('es6', () => {
             // TODO
             assert.strictEqual(!!dic, true);
         });
+
+        if('Слова в книге не существует', () => {
+            const dic = new core.Dictionary();
+
+            assert.strictEqual(dic.getDescription("Книга"), "Слово отсутствует в словаре");
+        });
+
+        it('Слово в кинге существует', () => {
+            const dic = new core.Dictionary();
+
+            dic.addWord("SQL", "Structured Query Language");
+            assert.strict(dic.getDescription("SQL", "Structured Query Language"));
+        });
+
+        it('Слово удалено из книги', () => {
+            const dic = new core.Dictionary();
+
+            dic.addWord("SQL", "Structured Query Language");
+            dic.deleteWord("SQL");
+
+            assert.strictEqual(dic.getDescription("SQL"), "Слово отсутствует в словаре");
+        });
     });
 });
